@@ -9,7 +9,7 @@ class Clock {
     // 3. Call printTime.
     this.printTime();
     // 4. Schedule the tick at 1 second intervals.  
-    
+    setInterval(this.tick(), 1000);
   }
 
   printTime() {
@@ -19,9 +19,34 @@ class Clock {
     console.log(timeString);
   }
 
-  _tick() {
+  tick() {
+    this.seconds += 1;
     // 1. Increment the time by one second.
+    this.increment_second();
+    this.increment_minute();
+    this.increment_hour();
     // 2. Call printTime.
+    this.printTime();
+  }
+  
+  increment_second(){
+    if (this.seconds === 60){
+      this.seconds = 0;
+      this.minutes += 1;
+    }
+  }
+  
+  increment_minute(){
+    if (this.minutes === 60){
+      this.minutes = 0;
+      this.hours += 1;
+    }
+  }
+  
+  increment_hour() {
+    if (this.hours === 24){
+      this.hours = 0;
+    }
   }
 }
 
