@@ -27,11 +27,25 @@ function innerBubbleSortLoop(arr, i, madeAnySwaps, outerBubbleSortLoop) {
     });
   }
   else if (i == (arr.length - 1)) {
-    // outerBubbleSortLoop(madeAnySwaps)
-     console.log("In outer bubble sort");
+    outerBubbleSortLoop(madeAnySwaps);
+     // console.log("In outer bubble sort");
   }
 }
 
-// const array = [1,2,4,3,2];
-// innerBubbleSortLoop(array, 0, false);
-// 
+function absurdBubbleSort(arr, sortCompletionCallback){
+  function outerBubbleSortLoop(madeAnySwaps){
+    if (madeAnySwaps) {
+      innerBubbleSortLoop(arr, 0, false, outerBubbleSortLoop);
+    }
+    else{
+      console.log(`look @ this shiz its SORTED ${arr}`);
+      sortCompletionCallback(arr);
+    }
+  }
+  outerBubbleSortLoop(true);
+}
+
+absurdBubbleSort([3, 2, 1], function (arr) {
+  console.log("Sorted array: " + JSON.stringify(arr));
+  reader.close();
+});
